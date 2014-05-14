@@ -124,13 +124,6 @@ public class Lab31 {
 			System.out.println("Reading messages from queue.");
 
 			List<Message> messages = labCode.readMessages(sqsClient, queueUrl);
-			System.out.println("Message count from queue: " + messages.size());
-			Message message = messages.get(0);
-			System.out.println("\nQueue Message:");
-
-			System.out.println("\tMessageId : " + message.getMessageId());
-			System.out.println("\tMD5OfBody : " + message.getMD5OfBody());
-			System.out.println("\tBody : " + message.getBody());
 
 			// We expect two messages here
 			if (messages.size() < 2) {

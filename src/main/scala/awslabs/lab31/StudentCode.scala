@@ -54,13 +54,17 @@ class StudentCode extends ILabCode with IOptionalLabCode {
   }
   @Override
   def postToQueue(sqsClient: AmazonSQSClient, queueUrl: String, messageText: String) = {
-    sqs.send(Queue(queueUrl), messageText)
+    val result = sqs.send(Queue(queueUrl), messageText)
+    println("postToQueue result: " + result.toString())
 
   }
   @Override
   def readMessages(sqsClient: AmazonSQSClient, queueUrl: String): java.util.List[com.amazonaws.services.sqs.model.Message] = {
     val msgs = sqs.receive(Queue(queueUrl))
-    msgs.asJava.asInstanceOf[java.util.List[com.amazonaws.services.sqs.model.Message]]
+    val msglist = new java.util.ArrayList[com.amazonaws.services.sqs.model.Message]()
+    msglist.addAll(msgs.asJava)
+
+    msglist
 
   }
 
