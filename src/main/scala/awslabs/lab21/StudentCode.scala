@@ -1,4 +1,4 @@
-package awslabs.labs21
+package awslabs.lab21
 
 import awscala._
 import awscala.s3._
